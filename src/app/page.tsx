@@ -1,20 +1,17 @@
 "use client";
 
+import CouterTime from "@/components/CouterTime";
 import { Button } from "@/components/ui/Button";
 import { horoscopeAPI } from "@/lib/api";
 import { textByLevelMap } from "@/lib/utils";
 import { Horoscope } from "@/types";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Home() {
   const [horoscope, setHoroscope] = useState<Horoscope>();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetchHoroscope();
-  }, []);
+  const [canRandom, setCanRandom] = useState(false);
 
   const fetchHoroscope = async () => {
     setLoading(true);
@@ -32,13 +29,16 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
+      <img
+        src="/behind_card.jpg"
+        alt="behind_card"
+        className="w-[50%] object-cover rounded-3xl shadow-lg hover:opacity-80 cursor-pointer"
+      />
       <div className="w-full max-w-md">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-extrabold text-blue-700 drop-shadow">
-            คำทำนายดวงชะตา
-          </h1>
-        </div>
         <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col gap-4">
+          <h1 className="text-3xl font-extrabold text-blue-700 drop-shadow">
+            คำทำนายดวงชะตาวันนี้
+          </h1>
           {loading ? (
             <div className="flex flex-col items-center justify-center gap-2">
               <span className="animate-spin h-8 w-8 border-4 border-blue-300 border-t-transparent rounded-full"></span>
@@ -50,46 +50,42 @@ export default function Home() {
             <div className="text-red-500 text-center font-semibold">
               {error}
             </div>
-          ) : horoscope ? (
+          ) : (
             <>
               <div className="flex items-center gap-3">
-                <span className="flex w-10 h-10 bg-blue-100 rounded-lg items-center justify-center">
-                  <Image
-                    src="/globe.svg"
-                    alt="horoscope"
-                    width={32}
-                    height={32}
-                  />
-                </span>
                 <span className="text-xl font-bold text-purple-700">
-                  {textByLevelMap[horoscope.level]}
+                  {horoscope ? textByLevelMap[horoscope?.level] : ""}
                 </span>
               </div>
               <div className="mt-2">
                 <p className="text-lg text-gray-800 font-semibold mb-2">
-                  {horoscope.description}
+                  {horoscope?.description}
                 </p>
                 <div className="flex items-center gap-2">
-                  <span className="flex w-6 h-6 bg-purple-100 rounded items-center justify-center">
-                    <Image
-                      src="/window.svg"
-                      alt="note"
-                      width={20}
-                      height={20}
-                    />
-                  </span>
                   <span className="text-sm text-gray-600 italic">
-                    {horoscope.note}
+                    {horoscope?.note}
                   </span>
                 </div>
               </div>
               <div className="flex justify-end mt-4">
-                <Button variant="secondary" size="sm" onClick={fetchHoroscope}>
-                  ดูคำทำนายใหม่
-                </Button>
+                 
+                {canRandom ? (
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => {
+                      fetchHoroscope();
+                      setCanRandom(false);
+                    }}
+                  >
+                    ดูดวง 🔮
+                  </Button>
+                ) : (
+                  <CouterTime onClick={() => setCanRandom(true)} />
+                )}
               </div>
             </>
-          ) : null}
+          )}
         </div>
       </div>
       <div
