@@ -109,12 +109,12 @@ export default function HoroscopeModal({
     <div className="fixed inset-0 z-50 overflow-y-auto">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-[#5c57574a] transition-opacity"
+        className="fixed inset-0 bg-[#5c57574a] transition-opacity w-[430px] mx-auto"
         onClick={onClose}
       />
 
-      <div className="flex min-h-screen items-center justify-center p-4">
-        <div className="relative bg-white rounded-lg shadow-xl max-w-md w-full mx-auto">
+      <div className="flex min-h-screen items-center justify-center p-4 mx-auto">
+        <div className="relative bg-white rounded-lg shadow-xl max-w-[430px] w-full">
           <div className="flex items-center justify-between px-4 pt-4">
             <h3 className="text-md font-semibold ">{title}</h3>
 
@@ -125,7 +125,6 @@ export default function HoroscopeModal({
 
           <form onSubmit={handleSubmit} className="py-4 px-6">
             <div className="space-y-4">
-              {/* Level Field */}
               <LevelDropdown
                 value={formData.level}
                 onChange={(level) => handleInputChange("level", level)}

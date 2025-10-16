@@ -33,12 +33,12 @@ export default function StatusCard({
     <div className={`bg-white rounded-lg shadow-sm p-2 ${className}`}>
       <div className="flex items-center gap-4">
         <div
-          className={`p-2 ${bgColor} w-12 h-12 rounded-lg flex items-center justify-center`}
+          className={`p-2 ${bgColor} w-10 h-10 rounded-lg flex items-center justify-center`}
         >
           <span className="text-2xl">{icon}</span>
         </div>
         <div>
-          <p className="text-sm font-medium text-gray-600">{title}</p>
+          <p className="text-xs font-medium text-gray-600">{title}</p>
           <p className="text-lg font-bold text-gray-900">{value}</p>
           {description && (
             <p className="text-xs text-gray-500 mt-1">{description}</p>

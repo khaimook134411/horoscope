@@ -155,7 +155,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-100  max-w-7xl mx-auto p-4 sm:px-6 lg:px-8">
       <Toaster />
       <div className="w-full flex justify-between">
         <Link
@@ -168,19 +168,19 @@ export default function AdminPage() {
           ออกจากระบบ
         </Button>
       </div>
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">
+      <div className="my-4">
+        <h1 className="text-2xl font-bold text-gray-900">
           หน้าแอดมินจัดการดวง
         </h1>
         <p className="mt-2 text-gray-600">จัดการข้อมูลดวงดาวทั้งหมด</p>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm p-6 mb-4">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="bg-white rounded-lg shadow-sm p-3 mb-4">
+        <div className="flex flex-col gap-4">
           <div className="flex-1">
             <input
               type="text"
-              placeholder="ค้นหาดวง..."
+              placeholder="ค้นหาคำทำนาย..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="h-9 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -193,7 +193,7 @@ export default function AdminPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div className="grid grid-cols-2 gap-4 mb-4">
         <StatusCard
           title="ดวงทั้งหมด"
           value={horoscopes.length}
@@ -205,12 +205,6 @@ export default function AdminPage() {
           value={filteredHoroscopes.length}
           icon="🔍"
           variant="green"
-        />
-        <StatusCard
-          title="อัปเดตล่าสุด"
-          value="วันนี้"
-          icon="⭐"
-          variant="purple"
         />
       </div>
 
@@ -234,7 +228,7 @@ export default function AdminPage() {
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  ระดับความโชคดี
+                  ระดับ
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   ดวง (คำทำนาย)

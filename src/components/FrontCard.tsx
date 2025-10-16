@@ -7,7 +7,7 @@ import Badge from "./ui/Badge";
 export default function FrontCard() {
   const { horoscope, error } = useDailyFortune({});
   return (
-    <div className="w-[60%] min-w-[300px] h-[400px] text-center rounded-3xl  text-white backdrop-blur-sm bg-black/40 shadow-lg p-6 flex flex-col gap-4">
+    <div className="w-[60%] min-w-[300px] h-[400px] text-center rounded-3xl text-white backdrop-blur-sm bg-black/40 shadow-lg p-6 flex flex-col gap-4">
       {error ? (
         <div className="text-red-500 text-center font-semibold">
           {String(error)}
