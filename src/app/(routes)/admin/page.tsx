@@ -39,7 +39,7 @@ export default function AdminPage() {
       } else {
         setError("Failed to fetch horoscopes");
       }
-    } catch (err) {
+    } catch {
       setError("Error fetching horoscopes");
     } finally {
       setLoading(false);

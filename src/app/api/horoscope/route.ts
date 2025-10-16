@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     }
 
     return new Response(JSON.stringify(data), { status: 201 });
-  } catch (error: unknown) {
+  } catch {
     return new Response("Internal Server Error", { status: 500 });
   }
 }

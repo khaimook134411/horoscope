@@ -1,6 +1,5 @@
 import { getTimeUntilMidnight } from "@/lib/day";
 import React, { useEffect, useState } from "react";
-import { Button } from "./ui/Button";
 
 export default function CouterTime() {
   const [timeLeft, setTimeLeft] = useState(getTimeUntilMidnight());

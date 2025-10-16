@@ -64,7 +64,7 @@ export function loadFortuneForDate(dateKey: string) {
     const raw = localStorage.getItem(`fortune_${dateKey}`);
     if (!raw) return null;
     return JSON.parse(raw).data;
-  } catch (e) {
+  } catch {
     return null;
   }
 }

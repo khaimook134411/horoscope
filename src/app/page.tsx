@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import FrontCard from "@/components/FrontCard";
@@ -16,7 +17,6 @@ export default function Home() {
       {horoscope ? (
         <FrontCard />
       ) : (
-        // eslint-disable-next-line @next/next/no-img-element
         <img
           src="/behind_card.jpg"
           alt="behind_card"

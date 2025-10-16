@@ -11,7 +11,7 @@ export async function POST() {
     }
 
     return new Response("Logged out successfully", { status: 200 });
-  } catch (error: unknown) {
+  } catch {
     return new Response("Internal Server Error", { status: 500 });
   }
 }
