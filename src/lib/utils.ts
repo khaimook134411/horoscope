@@ -11,3 +11,20 @@ export const textByLevelMap: { [key: number]: string } = {
   4: "ไม่ค่อยดี",
   5: "โชคร้าย",
 };
+
+export const getBadgeVariant = (level: number) => {
+  switch (level) {
+    case 1:
+      return "green";
+    case 2:
+      return "blue";
+    case 3:
+      return "yellow";
+    case 4:
+      return "orange";
+    case 5:
+      return "red";
+    default:
+      return "yellow";
+  }
+};

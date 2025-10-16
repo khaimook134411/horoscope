@@ -10,25 +10,8 @@ import HoroscopeModal from "@/components/HoroscopeModal";
 import { Horoscope } from "@/types";
 import TrashIcon from "@/components/icons/TrashIcon";
 import EditIcon from "@/components/icons/EditIcon";
-import { textByLevelMap } from "@/lib/utils";
+import { getBadgeVariant, textByLevelMap } from "@/lib/utils";
 import toast, { Toaster } from "react-hot-toast";
-
-const getBadgeVariant = (level: number) => {
-  switch (level) {
-    case 1:
-      return "green";
-    case 2:
-      return "blue";
-    case 3:
-      return "yellow";
-    case 4:
-      return "orange";
-    case 5:
-      return "red";
-    default:
-      return "yellow";
-  }
-};
 
 export default function AdminPage() {
   const [horoscopes, setHoroscopes] = useState<Horoscope[]>([]);
