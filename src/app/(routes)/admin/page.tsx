@@ -24,6 +24,12 @@ export default function AdminPage() {
   );
 
   useEffect(() => {
+    const token = localStorage.getItem("access_token");
+
+    if (!token) {
+      window.location.href = "/login";
+      return;
+    }
     fetchHoroscopes();
   }, []);
 
@@ -129,6 +135,7 @@ export default function AdminPage() {
     try {
       await horoscopeAPI.logout();
       window.location.href = "/";
+      localStorage.removeItem("access_token");
     } catch {
       toast.error("เกิดข้อผิดพลาดในการเชื่อมต่อ");
     }
@@ -147,8 +154,8 @@ export default function AdminPage() {
     return (
       <div className="min-h-screen  flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">กำลังโหลดข้อมูลดวงดาว...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto"></div>
+          <p className="mt-4 text-white">กำลังโหลดข้อมูลดวงดาว...</p>
         </div>
       </div>
     );

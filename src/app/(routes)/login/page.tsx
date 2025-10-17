@@ -20,7 +20,7 @@ export default function LoginPage() {
       ...prev,
       [name]: value,
     }));
-    // Clear error when user starts typing
+
     if (error) setError("");
   };
 
@@ -30,7 +30,6 @@ export default function LoginPage() {
     setError("");
 
     try {
-      // Simple validation
       if (!formData.username.trim()) {
         setError("กรุณากรอกชื่อผู้ใช้");
         return;
@@ -46,14 +45,13 @@ export default function LoginPage() {
       );
 
       if (data) {
-        toast.success("เข้าสู่ระบบสำเร็จ!");
-        // Redirect to dashboard or home page
+        localStorage.setItem("access_token", data.session.access_token);
         window.location.href = "/admin";
       } else {
-        setError("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+        toast.error("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
       }
     } catch {
-      setError("เกิดข้อผิดพลาดในการเข้าสู่ระบบ");
+      toast.error("เกิดข้อผิดพลาดในการเข้าสู่ระบบ");
     } finally {
       setIsLoading(false);
     }
