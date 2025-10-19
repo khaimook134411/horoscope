@@ -1,5 +1,6 @@
 import { getTimeUntilMidnight } from "@/lib/day";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function CouterTime() {
   const [timeLeft, setTimeLeft] = useState(getTimeUntilMidnight());
@@ -27,6 +28,9 @@ export default function CouterTime() {
         onClick={() => {
           setIsBounce(true);
           setTimeout(() => setIsBounce(false), 1000);
+          toast("รอเที่ยงคืนนะคะ!", {
+            icon: "🔮",
+          });
         }}
       >
         {timeLeft}

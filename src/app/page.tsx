@@ -5,6 +5,7 @@ import FrontCard from "@/components/FrontCard";
 import useDailyFortune from "@/hooks/useDailyFortune";
 import { useTriplePress } from "@/hooks/useTripleTap";
 import { useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 export default function Home() {
   const [unLock, setUnLock] = useState(false);
@@ -14,6 +15,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
+      <Toaster />
       {horoscope ? (
         <FrontCard />
       ) : (
@@ -21,7 +23,7 @@ export default function Home() {
           src="/behind_card.jpg"
           alt="behind_card"
           className={`w-[50%] min-w-[250px] object-cover rounded-3xl shadow-lg hover:opacity-80 cursor-pointer ${
-            loading ? "animate-ping" : ""
+            loading ? "shake" : ""
           }`}
           onClick={() => {
             requestFortune();

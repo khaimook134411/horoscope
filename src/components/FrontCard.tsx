@@ -1,13 +1,16 @@
 import useDailyFortune from "@/hooks/useDailyFortune";
 import { getBadgeVariant, textByLevelMap } from "@/lib/utils";
-import React from "react";
+import React, { useState } from "react";
 import CouterTime from "./CouterTime";
 import Badge from "./ui/Badge";
+import { ReactTyped } from "react-typed";
 
 export default function FrontCard() {
   const { horoscope, error } = useDailyFortune({});
+  const [afterHoroscope, setAfterHoroscope] = useState(false);
+
   return (
-    <div className="w-[60%] min-w-[300px] h-[400px] text-center rounded-3xl text-white backdrop-blur-sm bg-black/40 shadow-lg p-6 flex flex-col gap-4">
+    <div className="prediction-card w-[60%] min-w-[300px] h-[400px] text-center rounded-3xl text-white shadow-lg p-6 flex flex-col gap-4">
       {error ? (
         <div className="text-red-500 text-center font-semibold">
           {String(error)}
@@ -20,11 +23,26 @@ export default function FrontCard() {
             </Badge>
             <div className="flex-1 flex flex-col pb-5">
               <p className="flex-1 flex items-center justify-center text-xl font-semibold text-[#E4C27A]">
-                {horoscope?.description}
+                <ReactTyped
+                  backSpeed={50}
+                  strings={[`${horoscope?.description}`]}
+                  typeSpeed={50}
+                  showCursor={false}
+                  onComplete={() => setAfterHoroscope(true)}
+                />
               </p>
-              <p className="text-sm italic text-[#9E8CFF]">
-                คำแนะนำ: {horoscope?.note}
-              </p>
+
+              {afterHoroscope && (
+                <p className="text-sm italic text-[#9E8CFF]">
+                  <ReactTyped
+                    backSpeed={50}
+                    strings={[`คำแนะนำ: ${horoscope?.note}`]}
+                    typeSpeed={50}
+                    showCursor={false}
+                    onBegin={() => afterHoroscope}
+                  />
+                </p>
+              )}
             </div>
           </div>
 
