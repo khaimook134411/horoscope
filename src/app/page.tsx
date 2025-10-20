@@ -35,7 +35,12 @@ export default function Home() {
         {unLock ? (
           <button
             onPointerDown={() => {
-              window.location.href = "/login";
+              const token = localStorage.getItem("access_token");
+              if (token) {
+                window.location.href = "/admin";
+              } else {
+                window.location.href = "/login";
+              }
             }}
           >
             <img src="/unlock.png" alt="admin" className="w-4 h-4 " />
